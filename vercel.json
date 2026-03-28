@@ -1,6 +1,17 @@
  {
-  "framework": null,
-  "buildCommand": null,
-  "installCommand": null,
-  "outputDirectory": null
+  "version": 2,
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/css"
+        }
+      ]
+    }
+  ]
 }
