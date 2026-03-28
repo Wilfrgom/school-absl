@@ -1,4 +1,6 @@
  {
-  "buildCommand": "",
-  "outputDirectory": "."
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": null
 }
