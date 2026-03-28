@@ -1,16 +1,16 @@
- {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
-  ],
+{
+  "public": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*).css",
+      "source": "**/*.css",
       "headers": [
         { "key": "Content-Type", "value": "text/css; charset=utf-8" }
       ]
     },
     {
-      "source": "/(.*).js",
+      "source": "**/*.js",
       "headers": [
         { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
       ]
