@@ -1,8 +1,22 @@
 const express = require('express');
 const path = require('path');
+const net = require('net');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+
+// Find an available port
+function findAvailablePort(startPort) {
+  return new Promise((resolve, reject) => {
+    const server = net.createServer();
+    server.listen(startPort, () => {
+      const port = server.address().port;
+      server.close(() => resolve(port));
+    });
+    server.on('error', () => {
+      resolve(findAvailablePort(startPort + 1));
+    });
+  });
+}
 
 // Serve static files with correct MIME types
 app.use(express.static(__dirname, {
@@ -32,6 +46,9 @@ app.get('/:page', (req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`[v0] Server running on port ${PORT}`);
+// Start server on available port
+findAvailablePort(3000).then(port => {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
 });
